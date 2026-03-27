@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg-surface: #f8fafc;
+  --text-main: #0f172a;
+  --card-bg: #ffffff;
+  --border-color: #f1f5f9;
+}
+
+.dark {
+  --bg-surface: #020617;
+  --text-main: #f8fafc;
+  --card-bg: #0f172a;
+  --border-color: #1e293b;
+}
+
+@layer base {
+  body {
+    @apply bg-[var(--bg-surface)] text-[var(--text-main)] font-sans cursor-default transition-colors duration-300;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  /* Premium SaaS Layouts */
+  .glass {
+    @apply bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl border border-white/20 dark:border-slate-800/20 shadow-xl;
+  }
+
+  .saas-card {
+    @apply bg-[var(--card-bg)] rounded-[32px] border border-[var(--border-color)] shadow-sm transition-all duration-300 
+           hover:shadow-xl hover:shadow-primary-500/5 hover:-translate-y-1;
+  }
+
+  /* Interaction Feedbacks */
+  .glow-interview { @apply ring-[3px] ring-amber-500/20 border-amber-500/50 shadow-lg shadow-amber-500/10; }
+  .glow-offer { @apply ring-[3px] ring-emerald-500/20 border-emerald-500/50 shadow-lg shadow-emerald-500/10; }
+  .glow-overdue { @apply ring-[3px] ring-rose-500/40 border-rose-500/80 shadow-lg shadow-rose-500/20; }
+
+  .btn {
+    @apply relative flex items-center justify-center px-6 py-2.5 rounded-2xl font-bold 
+           transition-all duration-300 transform active:scale-[0.96] disabled:opacity-50 
+           disabled:pointer-events-none focus:outline-none focus:ring-4;
+  }
+  
+  .btn-primary {
+    @apply btn bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500/30;
+  }
+  
+  .btn-secondary {
+    @apply btn bg-[var(--card-bg)] text-[var(--text-main)] border border-[var(--border-color)] 
+           hover:bg-slate-50 dark:hover:bg-slate-800 focus:ring-slate-400/20;
+  }
+
+  .input-field {
+    @apply w-full px-5 py-3.5 rounded-2xl border border-[var(--border-color)] bg-[var(--card-bg)] text-[var(--text-main)] 
+           focus:outline-none focus:ring-4 focus:ring-primary-500/10 focus:border-primary-500 
+           transition-all duration-300 placeholder:text-slate-400 font-medium;
+  }
+
+  /* Status Badges */
+  .badge {
+    @apply px-4 py-1.5 rounded-full text-[11px] font-black uppercase tracking-widest;
+  }
+  .badge-applied { @apply bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400 border border-blue-200/50; }
+  .badge-interview { @apply bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400 border border-amber-200/50; }
+  .badge-offer { @apply bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400 border border-emerald-200/50; }
+  .badge-rejected { @apply bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-400 border border-rose-200/50; }
+
+  /* New Priority Labels */
+  .priority-high { @apply bg-red-100/50 text-red-700 dark:bg-red-900/20 dark:text-red-400 border border-red-200/30; }
+  .priority-medium { @apply bg-amber-100/50 text-amber-700 dark:bg-amber-900/20 dark:text-amber-400 border border-amber-200/30; }
+  .priority-low { @apply bg-slate-100/50 text-slate-700 dark:bg-slate-900/20 dark:text-slate-400 border border-slate-200/30; }
+}
+
+/* Timeline Custom Styles */
+.timeline-dot {
+  @apply relative before:absolute before:left-[-1.5px] before:top-[12px] before:h-full before:w-[2.5px] before:bg-[var(--border-color)];
+}
+.timeline-dot:last-child::before { @apply hidden; }
+
+/* Micro-Animations */
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(2deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+
+/* Skeleton Loading */
+.skeleton {
+  @apply animate-pulse bg-slate-200 dark:bg-slate-800 rounded-xl;
+}
+
+/* Floating Action Button (FAB) */
+.fab {
+  @apply fixed bottom-8 right-8 w-16 h-16 bg-primary-600 text-white rounded-full flex items-center justify-center 
+         shadow-2xl shadow-primary-500/40 hover:scale-110 active:scale-95 transition-all z-50 cursor-pointer;
+}
+
+/* Scrollbar Customization */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-[var(--bg-surface)];
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-200 dark:bg-slate-800 rounded-full hover:bg-slate-300;
+}
